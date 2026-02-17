@@ -39,7 +39,7 @@ int position(int colour[][2]){
     }
  return sum;
 }
-int unlocked(int colour[][2] , string peiceNames[] , bool start[]){
+void peiceUnlocker(int colour[][2] , string peiceNames[] , bool start[]){
     for (int i = 0 ; i < 4 ; i ++){
         if (start[i] == false){
             start[i] = true;
@@ -49,19 +49,12 @@ int unlocked(int colour[][2] , string peiceNames[] , bool start[]){
         }
     }
 }
-int move_6(int colour[][2] , int number , string peiceName[]){
-    int sum = 0;
-    number = dice();
-    for (int i =0 ; i < 4 ; i++ ){
-        if (colour[i][0] == 0 && colour[i][1]+number <= 56){
-            colour[i][1] += number;
-            colour[i][0] = 1;
-            cout << peiceName[i][1] <<" is moved to "<<colour[i][1];
-            break;
-        }
+int peiceDecider(int colour [][2], bool start[]){
+    int indexMove;
+    for (int i = 0 ; i < 4 ; i++){
+        if (start[i] == true && colour[i][0] == 0) indexMove = i;
     }
-    sum = position(colour);
- return sum;
+    return indexMove;
 }
 int unlockCheck(bool start[]){
     int indexUnlocked = 0;
@@ -70,33 +63,57 @@ int unlockCheck(bool start[]){
             indexUnlocked += 1;
         }
     }
+    return indexUnlocked;
 }
-int move_12(bool start[], int colour[][2] , string peiceNames[]){
+void move_6(int colour[][2] , string peiceName[] , bool start[]){
+    int indexMove = peiceDecider(colour , start);
+    int number = dice();
+    colour[indexMove][1] += number;
+    colour[indexMove][0] = 1;
+    cout << peiceName[indexMove][1] <<" is moved to "<<colour[indexMove][1];
+}
+void move_12(bool start[], int colour[][2] , string peiceNames[]){
     int indexUnlocked = unlockCheck(start);
     int sum = 0;
-    if (indexUnlocked < 4) unlocked(colour , peiceNames , start);
-    else if(indexUnlocked == 4) move_6(colour , dice() , peiceNames);
-    sum = position(colour);
- return sum;
+    if (indexUnlocked < 4) peiceUnlocker(colour , peiceNames , start);
+    else if(indexUnlocked == 4) move_6(colour , dice() , peiceNames , start);
 }
 int move_18(int colour[][2] , string peiceNames[] , bool start[]){
     int index = unlockCheck(start);
     int sum = position(colour);
-    if (index < 3){
+    switch (index){
+    case 1:
+    case 2:
         unlocked(colour , peiceNames , start);
         unlocked(colour , peiceNames , start);
-        move_6(colour , dice() , peiceNames);
-    }
-    if (index == 3){
+        move_6(colour , dice() , peiceNames , start);
+        break;
+    case 3:
         unlocked(colour , peiceNames , start);
-        move_6(colour , dice() , peiceNames);
-    }
-    if (index == 4){
-        move_6(colour , dice() , peiceNames);
+        move_6(colour , dice() , peiceNames , start);
+        break;
+    case 4:
+        move_6(colour , dice() , peiceNames , start);
     }
  return sum;
 }
-int play(int current_position , bool* start , string player , bool* Player){
+void checker(int colour[][2]){
+    int size = 4;
+    colour[size][2];
+    for (int i = 0 ; i < 4 ; i++){
+        if (colour[i][1] >= 56){
+            for (int j = i ; j <(4-i) ; j++) colour[j][1] = colour[j+1][1];
+            size--;
+        }
+    }
+}
+int play(int number , int colour[][2]){
+    int number = dice();
+    if (number >= 0 && number < 6){
+        move_6(colour , )
+    }
+}
+int pla(int current_position , bool* start , string player , bool* Player , int colour[][2] ,bool start[] , string peiceNames[] ){
     if (current_position < 56){ // already won check
         int num = rand()% 6 + 1;
         if (*start == true && num == 6){ // feature added for 2  and 3 sixes
