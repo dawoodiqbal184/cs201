@@ -1,8 +1,8 @@
 // A C++ program that takes in put salary of employees in a company and point out those employees having more base salary but lesser net salary
 #include<iostream>
 using namespace std;
-void inputSalary(int salary[], int x){
-    for (int i = 0 ; i < x ; i++){
+void inputSalary(int salary[], int *x){
+    for (int i = 0 ; i < *x ; i++){
         cout << "Enter the salaries of employ # "<<i<<endl;
         cout << "$ ";
         cin>>salary[i];
@@ -37,4 +37,16 @@ void calSalary(int salary[][2] , int x){
         }
     }
 }
-void converter()
+void converter(int array[] , int *size){
+    cout << &array<<endl;
+}
+int main (){
+    int size;
+    cout << "Enter the number of employees\n";
+    cin >> size;
+    int array[size];
+    converter( array , &size);
+    for (int i = 0 ; i < size ; i++){
+        cout << &array[i]<<endl;
+    }
+}
