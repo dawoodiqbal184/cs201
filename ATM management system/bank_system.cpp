@@ -20,8 +20,8 @@ void menu(){
     cout << " ----- WELCOME TO OUR BANK -----\n";
     cout << "1) Open new account\n";
     cout << "2) Update existing account\n";
-    cout << "4) Print details of an account\n";
-    cout << "5) List details of all acounts\n";
+    cout << "3) Print details of an account\n";
+    cout << "4) List details of all acounts\n";
     cout << "Press 0 to exit menu\n";
     for (int i = 0 ; i < 30 ;i++)cout << "-";
     cout << endl;
@@ -139,12 +139,6 @@ void updateAccount(Account accounts[]){
     cout << endl;
 }
 
-void continueCode(){
-    cout << "Press enter to move back to main menu\n";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cin.get();
-}
-
 void exit(){
     cout << "All desirable changes are done\n";
     cout << "Thank you! for using our system another day\n";
@@ -156,15 +150,22 @@ int main (){
         cin >> choice;
         if (choice == 1){
             createAccount(accounts);
-            continueCode;
+            cout << "Press enter to move back to main menu\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get();
         }
         else if (choice == 2){
             updateAccount(accounts);
+            cout << "Press enter to move back to main menu\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get();
         }
         else if (choice == 3){
             int x = findAccount(accounts);
             printAccount(accounts[x]);
-            continueCode;
+            cout << "Press enter to move back to main menu\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get();
         }
         else if(choice == 4){
             for ( int i = 0 ; i < x ; i++){
@@ -172,9 +173,11 @@ int main (){
                     printAccount(accounts[i]);
                 }
             }
-            continueCode;
+            cout << "Press enter to move back to main menu\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get();
         }
-        else if (choice == 5){
+        else if (choice == 0){
             exit();
             break;
         }
