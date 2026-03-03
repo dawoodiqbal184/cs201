@@ -10,34 +10,31 @@ struct Account{
     double balance;
     status accountStatus;
 };
-const int x = 10;
+const int x = 1;
 Account accounts[x];
 
 
 void menu(){
-    for (int i = 0 ; i < 30 ;i++)cout << "-";
-    cout << endl<<endl;
-    cout << " ----- WELCOME TO OUR BANK -----\n";
-    cout << "1) Open new account\n";
-    cout << "2) Update existing account\n";
-    cout << "3) Print details of an account\n";
-    cout << "4) List details of all acounts\n";
-    cout << "Press 0 to exit menu\n";
-    for (int i = 0 ; i < 30 ;i++)cout << "-";
-    cout << endl;
-    cout << "Enter your choice : ";
+    cout << "----------------------------------" << endl
+         << "------ WELCOME TO OUR BANK -------\n"
+         << "1) Open new account\n"
+         << "2) Update existing account\n"
+         << "3) Print details of an account\n"
+         << "4) List details of all acounts\n"
+         << "Press 0 to exit menu\n"
+         << "----------------------------------" << endl
+         << "Enter your choice : ";
 }
 
 
 int slotFinder(Account accounts[]){
-    int y;
-    for (int i = 0 ; i < x ; i++){
+    
+    for (int i = 0 ; i < x ; i++ ){
         if (accounts[i].name == ""){
-            y = i;
-            break;
+            return i;
         }
     }
-return y;
+    return -1;
 }
 
 
@@ -62,7 +59,12 @@ return account;
 
 
 void createAccount(Account accounts[]){
-    int y = slotFinder(accounts);
+   int y = slotFinder(accounts);
+    if (y == -1){
+        cout << "Unfortunately, we are out of limit, can not open another account!";
+        return;
+    }
+    
     accounts[y] = create();
 }
 
