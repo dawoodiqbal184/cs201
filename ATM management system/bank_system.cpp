@@ -3,14 +3,14 @@
 #include <iomanip>
 #include<limits>
 using namespace std;
-enum class status{ACTIVE , INACTIVE};
+enum class status{INACTIVE , ACTIVE};
 struct Account{
     string name;
     int accountNumber;
     double balance;
     status accountStatus;
 };
-const int x = 1;
+const int x = 10;
 Account accounts[x];
 
 
@@ -28,13 +28,12 @@ void menu(){
 
 
 int slotFinder(Account accounts[]){
-    
     for (int i = 0 ; i < x ; i++ ){
         if (accounts[i].name == ""){
             return i;
         }
     }
-    return -1;
+return -1;
 }
 
 
@@ -61,10 +60,9 @@ return account;
 void createAccount(Account accounts[]){
    int y = slotFinder(accounts);
     if (y == -1){
-        cout << "Unfortunately, we are out of limit, can not open another account!";
+        cout << "Unfortunately, we are out of limit, can not open another account!\n";
         return;
     }
-    
     accounts[y] = create();
 }
 
@@ -83,15 +81,16 @@ int findAccount(Account accounts[]){
 return y;
 }
 
+
 string statusPrint(Account account){
-    status s = account.accountStatus;
+    int a = static_cast<int>(account.accountStatus) ;
     string r;
-    switch(s){
-        case status::INACTIVE : r = "Inactive";
-        case status::ACTIVE : r = "Active";
+    switch(a){
+        case 0 : return "Inactive";
+        case 1 : return "Active";
         break;
     }
-    return r;
+return;
 }
 
 
@@ -104,14 +103,16 @@ void printAccount(Account account){
 
 status changeStatus(Account account){
     int choice;
-    status a = status::ACTIVE;
-    status b = status::INACTIVE;
+    int a = static_cast<int>(account.accountStatus);
     status r;
     cout << "You want this account : \n1)Active\t2)Inactive\nEnter your choice : \n";
     cin >> choice;
-    if (choice == 1) r = a;
-    else if(choice == 2) r = b;
-    return r;
+    switch(choice){
+        case 1 : return status::ACTIVE;
+        case 2 : return status::INACTIVE;
+        default : break;
+    }
+return ;
 }
 
 
@@ -129,8 +130,9 @@ Account update(Account account){
     if (choice == 1) s = changeStatus(account);
     if (choice == 2) n = statusPrint(account);
     account.accountStatus = s;
-    return account;
+return account;
 }
+
 
 void updateAccount(Account accounts[]){
     
