@@ -13,6 +13,16 @@ struct Account{
 const int x = 10;
 Account accounts[x];
 
+
+// function prints the status of ann account
+string statusPrint(status accountStatus){
+    string r;
+    if (status::ACTIVE == accountStatus) r = "Active";
+    else if (status ::INACTIVE == accountStatus) r = "Inactive";
+return r;
+}
+
+
 // functions displays main menu
 void menu(){
     cout << "----------------------------------" << endl
@@ -53,7 +63,7 @@ Account create(){
     cout << "Account holder name : "<< account.name<<endl;
     cout << "Account number : "<<account .accountNumber<<endl;
     cout << "Balance : "<<account.balance<<endl;
-    cout << "ACccount status : Active\n";
+    cout << "Account status : "<<statusPrint(account.accountStatus)<<endl;
 return account;
 }
 
@@ -83,20 +93,12 @@ int findAccount(Account accounts[]){
 return y;
 }
 
-// function prints the status of ann account
-string statusPrint(Account account){
-    string r;
-    if (status::ACTIVE == account.accountStatus) r = "Active";
-    else if (status ::INACTIVE == account.accountStatus) r = "Inactive";
-return r;
-}
-
 // function that prints the details of an account
 void printAccount(Account account){
     cout << "Account holder name : "<< account.name<<endl;
     cout << "Account number : "<< account.accountNumber<<endl;
     cout << "Balance : "<< account.balance<<endl;
-    cout << "Account status : "<< statusPrint(account)<<endl;
+    cout << "Account status : "<< statusPrint(account.accountStatus)<<endl;
 }
 
 // function that will modify the status of an account
@@ -106,11 +108,11 @@ status changeStatus(Account account){
     cout << "You want this account : \n1)Active\t2)Inactive\nEnter your choice : \n";
     cin >> choice;
     switch(choice){
-        case 1 : return status::ACTIVE;
-        case 2 : return status::INACTIVE;
+        case 1 : r = status::ACTIVE;
+        case 2 : r = status::INACTIVE;
         default : break;
     }
-return ;
+return r;
 }
 
 //function that will update status and balance of account
@@ -125,9 +127,8 @@ Account update(Account account){
     cin >> account.balance;
     cout <<"Do want to change account status also?\n1)Yes\t2)No\n";
     cin >> choice;
-    if (choice == 1) s = changeStatus(account);
-    if (choice == 2) n = statusPrint(account);
-    account.accountStatus = s;
+    if (choice == 1) account.accountStatus = changeStatus(account);
+    if (choice == 2) n = statusPrint(account.accountStatus);
 return account;
 }
 
