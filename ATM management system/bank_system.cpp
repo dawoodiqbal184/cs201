@@ -13,7 +13,7 @@ struct Account{
 const int x = 10;
 Account accounts[x];
 
-
+// functions displays main menu
 void menu(){
     cout << "----------------------------------" << endl
          << "------ WELCOME TO OUR BANK -------\n"
@@ -26,7 +26,7 @@ void menu(){
          << "Enter your choice : ";
 }
 
-
+// function finds empty slot for an account
 int slotFinder(Account accounts[]){
     for (int i = 0 ; i < x ; i++ ){
         if (accounts[i].name == ""){
@@ -36,7 +36,7 @@ int slotFinder(Account accounts[]){
 return -1;
 }
 
-
+// functions creates the account
 Account create(){
     Account account;
     cin.ignore();
@@ -53,19 +53,21 @@ Account create(){
     cout << "Account holder name : "<< account.name<<endl;
     cout << "Account number : "<<account .accountNumber<<endl;
     cout << "Balance : "<<account.balance<<endl;
+    cout << "ACccount status : Active\n";
 return account;
 }
 
-
+//function puts the account in array
 void createAccount(Account accounts[]){
    int y = slotFinder(accounts);
     if (y == -1){
         cout << "Unfortunately, we are out of limit, can not open another account!\n";
         return;
     }
-    accounts[y] = create();
+    else accounts[y] = create();
 }
 
+// function that will find account for modification or printing details 
 int findAccount(Account accounts[]){
     string user;
     int y;
@@ -81,19 +83,15 @@ int findAccount(Account accounts[]){
 return y;
 }
 
-
+// function prints the status of ann account
 string statusPrint(Account account){
-    int a = static_cast<int>(account.accountStatus) ;
     string r;
-    switch(a){
-        case 0 : return "Inactive";
-        case 1 : return "Active";
-        break;
-    }
-return;
+    if (status::ACTIVE == account.accountStatus) r = "Active";
+    else if (status ::INACTIVE == account.accountStatus) r = "Inactive";
+return r;
 }
 
-
+// function that prints the details of an account
 void printAccount(Account account){
     cout << "Account holder name : "<< account.name<<endl;
     cout << "Account number : "<< account.accountNumber<<endl;
@@ -101,9 +99,9 @@ void printAccount(Account account){
     cout << "Account status : "<< statusPrint(account)<<endl;
 }
 
+// function that will modify the status of an account
 status changeStatus(Account account){
     int choice;
-    int a = static_cast<int>(account.accountStatus);
     status r;
     cout << "You want this account : \n1)Active\t2)Inactive\nEnter your choice : \n";
     cin >> choice;
@@ -115,7 +113,7 @@ status changeStatus(Account account){
 return ;
 }
 
-
+//function that will update status and balance of account
 Account update(Account account){
     string n;
     printAccount(account);
@@ -133,7 +131,7 @@ Account update(Account account){
 return account;
 }
 
-
+// function that will aligns the updated account with accounts array
 void updateAccount(Account accounts[]){
     
     int x = findAccount(accounts);
@@ -143,10 +141,13 @@ void updateAccount(Account accounts[]){
     cout << endl;
 }
 
+// function that will display the exit menu
 void exit(){
     cout << "All desirable changes are done\n";
     cout << "Thank you! for using our system another day\n";
 }
+
+// the main function
 int main (){
     int choice = 6;
     while (choice != 0){
