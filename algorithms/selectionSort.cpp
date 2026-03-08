@@ -15,6 +15,13 @@ int minIndex(int array[], int start , int size){
     return min;
 }
 
+void input(int array[] , int size){
+    cout << "Enter your array :\n";
+    for (int i = 0 ; i < size ; i++){
+        cin >> array[i];
+    }
+}
+
 
 void output(int array[] , int size){
     cout << "Your array is : { ";
@@ -28,7 +35,8 @@ void output(int array[] , int size){
 
 int main(){
     int start = 0;
-    int array[5] = {5 , 7 , 8 , 11 , 2};
+    int array[5];
+    input(array , 5);
     for (int i = 0 ; i < 5 ; i++){
         output(array , 5);
         int min = minIndex(array , start , 5);
