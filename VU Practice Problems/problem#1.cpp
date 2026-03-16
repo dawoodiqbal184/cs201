@@ -1,52 +1,97 @@
 // A C++ program that takes in put salary of employees in a company and point out those employees having more base salary but lesser net salary
 #include<iostream>
 using namespace std;
-void inputSalary(int salary[], int *x){
-    for (int i = 0 ; i < *x ; i++){
-        cout << "Enter the salaries of employ # "<<i<<endl;
+
+
+void inputSalary(int salary[], int size){
+    for (int i = 0 ; i < size ; i++){
+        cout << "Enter the salary of employ # "<<i<<endl;
         cout << "$ ";
         cin>>salary[i];
     }
 }
-void calSalary(int salary[][2] , int x){
-    for (int i = 0 ; i < x ; i++){
-        if (salary[i][0] > 5000 && salary[i][0] < 10000) {
-            cout << "Tax Rate is 5% according to salary $5k to $10k\n";
-            float tax = salary[i][0] * (0.05);
-            salary[i][1] = salary[i][0] - tax;
+
+
+int calSalary(int salary){
+    float tax;
+    for (int i = 0 ; i < 10 ; i++){
+        if (salary > 5000 && salary < 10000) {
+            
+            tax = salary * (0.05);
+            salary = salary - tax;
         }
-        else if (salary[i][0] > 0 && salary[i][0] < 5000) {
-            cout << "Tax Rate is 0% for salary upto $5k\n";
-            float tax = salary[i][0] * (0);
-            salary[i][1] = salary[i][0] - tax;
+        else if (salary > 0 && salary < 5000) {
+            
+            float tax = salary * (0);
+            salary = salary - tax;
         }
-        else if (salary[i][0] > 10000 && salary[i][0] < 15000) {
-            cout << "Tax Rate is 10% according to salary $10k to $15k\n";
-            float tax = salary[i][0] * (0.1);
-            salary[i][1] = salary[i][0] - tax;
+        else if (salary > 10000 && salary < 15000) {
+            
+            float tax = salary * (0.1);
+            salary = salary - tax;
         }
-        else if (salary[i][0] > 15000 && salary[i][0] < 20000) {
-            cout << "Tax Rate is 15% according to salary $15k to $20k\n";
-            float tax = salary[i][0] * (0.15);
-            salary[i][1] = salary[i][0] - tax;
+        else if (salary > 15000 && salary < 20000) {
+            
+            float tax = salary * (0.15);
+            salary = salary - tax;
         }
-        else if (salary[i][0] > 20000 ) {
-            cout << "Tax Rate is 20% according to salary more than $20k\n";
-            float tax = salary[i][0] * (0.1);
-            salary[i][1] = salary[i][0] - tax;
+        else if (salary > 20000 ) {
+            
+            float tax = salary * (0.1);
+            salary = salary - tax;
+        }
+    }
+    return salary;
+}
+
+
+int* converter(int array[] , int size){
+    int cols;
+    cout << "How many columns do you want :";
+    cin >> cols;
+    int arrayNew[size][cols];
+    for (int i = 0 ; i < size ; i++){
+        arrayNew[i][0] = array[i];
+        arrayNew[i][1] = calSalary(arrayNew[i][0]);
+    }
+    int* ptr = *arrayNew;
+    return ptr;
+}
+
+
+void tracker(int* array , int size){
+    for(int i = 0; i < size ; i++){
+        for(int j = 0 ; j < size ; j++){
+            if (*(array + i) > *(array+j) && *(array + i) < *(array +j)){
+                cout << "Employ # "<<i<<" is unlucky having base salary more than employ # "<<j<<" but net salary is lesser\n";
+            }
         }
     }
 }
-void converter(int array[] , int *size){
-    cout << &array<<endl;
+
+
+void output(int* ptr , int size){
+    cout <<"Employ Numbers\t"<<"Base salary\t"<<"Net salary\t"<<endl;
+    for (int i = 0; i < size ; i++)
+    cout <<i <<"\t"<<*ptr<<"\t"<<*(ptr+size)<<endl;
+    ptr++;
 }
+
+
+void worker(int array[] , int size){
+    inputSalary(array , size);
+    int* ptr = converter(array , size);
+    tracker(ptr , size);
+    output(ptr , size);
+
+}
+
+
 int main (){
     int size;
     cout << "Enter the number of employees\n";
     cin >> size;
     int array[size];
-    converter( array , &size);
-    for (int i = 0 ; i < size ; i++){
-        cout << &array[i]<<endl;
-    }
+    worker(array , size);
+    return 0;
 }
