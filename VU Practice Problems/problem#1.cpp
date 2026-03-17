@@ -50,7 +50,7 @@ int calSalary(int salary){
 void tracker(int array[][2] , int rows){
     
     for(int i = 0; i < rows ; i++){
-        for(int j = 0 ; j < 2 ; j++){
+        for(int j = 0 ; j < rows ; j++){
             if (array[i][0] > array[j][0] && array[j][1]> array[i][1]){
                 cout << "Employ # "<<i+1<<" is unlucky having base salary more than employ # "<<j+1<<" but net salary is lesser\n";
             }
