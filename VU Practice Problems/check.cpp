@@ -1,13 +1,12 @@
 #include<iostream>
 using namespace std;
-
-int* converter(int* ptr , int array[]){
-    ptr = &array[0];
-}
 int main (){
-    int array[10];
-    for (int i = 0 ; i < 10 ; i++){
-        cout << &array[i];
+    int *ptr ;
+    int array[2];
+    for (int i = 0 ; i < 2 ; i++){
+        cin >> array[i];
         cout << endl;
     }
+    ptr = array;
+    cout <<*ptr;
 }
