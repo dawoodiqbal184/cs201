@@ -1,4 +1,5 @@
 // A C++ program that takes in put salary of employees in a company and point out those employees having more base salary but lesser net salary
+//but all of the task should be done by functions
 #include<iostream>
 #include<iomanip>
 using namespace std;
@@ -10,19 +11,6 @@ void inputSalary(int salary[], int size){
         cout << "$ ";
         cin>>salary[i];
     }
-}
-
-
-void output(int array[][2] , int rows){
-    cout <<left<<setw(12)<<"Employ"<<left<<setw(12)<<"Base salary"<<left<<setw(12)<<"Net salary\t"<<endl;
-    for (int i = 0; i < rows ; i++){
-        cout <<left<<setw(12)<<i+1;
-       for (int j = 0 ; j < 2 ; j++){
-        cout <<left<<setw(12)<< array[i][j];
-       }
-       cout << endl;
-    }
-    
 }
 
 
@@ -47,27 +35,41 @@ int calSalary(int salary){
     return salary;
 }
 
-void tracker(int array[][2] , int rows){
-    
-    for(int i = 0; i < rows ; i++){
-        for(int j = 0 ; j < rows ; j++){
-            if (array[i][0] > array[j][0] && array[j][1]> array[i][1]){
-                cout << "Employ # "<<i+1<<" is unlucky having base salary more than employ # "<<j+1<<" but net salary is lesser\n";
-            }
-        }
+
+int** converter(int array[] , int size){
+    int** ptr = new int*[size];
+    for (int i = 0 ; i < size ; i++){
+        ptr[i] = new int[2];
+    }
+    for (int i = 0 ; i < size ; i++){
+        ptr[i][0] = array[i];
+        ptr[i][1] = calSalary(ptr[i][0]);
+    }
+    return ptr;
+}
+
+
+void output(int **ptr , int rows){
+    cout <<left<<setw(12)<<"Employ"<<left<<setw(12)<<"Base salary"<<left<<setw(12)<<"Net salary\t"<<endl;
+    for (int i = 0; i < rows ; i++){
+        cout <<left<<setw(12)<<i+1;
+       for (int j = 0 ; j < 2 ; j++){
+        cout <<left<<setw(12)<< ptr[i][j];
+       }
+       cout << endl;
     }
 }
 
 
-void converter(int array[] , int size){
-    int arrayNew[size][2];
-    for (int i = 0 ; i < size ; i++){
-        arrayNew[i][0] = array[i];
-        arrayNew[i][1] = calSalary(arrayNew[i][0]);
+void trackerx(int **ptr , int size){
+    for (int i = 0 ; i < size ; i ++){
+        for (int j = 0 ; j < size ; j++){
+            if (i == j) continue;
+            if (ptr[i][0] > ptr[j][0] && ptr[i][1]< ptr[j][1]){
+                cout << "Employ # "<<i +1<<" has more base salary than employ # "<<j + 1<<" but has lesser net salary\n";
+            }
+        }
     }
-    int* ptr = *arrayNew;
-    output(arrayNew , size);
-    tracker(arrayNew , size);
 }
 
 
@@ -77,6 +79,8 @@ int main (){
     cin >> size;
     int array[size];
     inputSalary(array , size);
-    converter(array , size);
+    int **ptr = converter(array , size);
+    output(ptr , size);
+    trackerx(ptr , size);
     return 0;
 }
