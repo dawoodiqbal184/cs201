@@ -2,7 +2,6 @@
 // clubs = \u2663
 // hearts = \u2665
 // diamonds = \u2666
-// need to shift the create logic by passing two pointers starting from one and ending at another one;
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -14,14 +13,11 @@ struct card{
     string suite ;
     int number;
 };
-void create(card deck[]);
-void createSpades(card spades[]);
-void createClubs(card clubs[]);
-void createHearts(card hearts[]);
-void createDiamonds(card diamonds[]);
+void createCards(card deck[]);
 void shuffle(card deck[]);
 void swap(card *ptr , card *ptr1);
 void output(card array[] , int size);
+void deal(card p1, card p2 , card p3 , card p4);
 
 
 
@@ -32,71 +28,22 @@ ostream& operator<<(ostream& os , const card x){
 int main(){
     srand(time(0));
     card deck[52];
-    create(deck);
+    createCards(deck);
     output(deck , 52);
     cout << endl<<endl;
     shuffle(deck);
     output(deck , 52);
 }
 
-void create(card deck[]){// need to update the logic
-    card temp[13];
-    int counter = 0;
-    createSpades(temp);
+void createCards(card deck[]){
+    int counter = 2;
     for (int i = 0 ; i < 52 ; i++){
-        if (counter == 13) counter = 0;
-        if (i >= 0 && i <= 12){
-            
-            deck[i] = temp[i];
-        }
-        else if (i >= 13 && i <= 25){
-            createClubs(temp);
-            deck[i] = temp[counter];
-            counter++; 
-        }
-        else if (i >= 26 && i <= 38 ){
-            createHearts(temp);
-            deck[i] = temp[counter];
-            counter++;
-        }
-        else if (i >= 39 && i < 52 ){
-            createDiamonds(temp);
-            deck[i] = temp[counter];
-            counter++;
-        }
-    }
-
-}
-
-void createSpades(card spades[]){
-    int counter = 2;
-    for (int i = 0 ; i < 13 ; i++){
-        spades[i].suite = "\u2660";
-        spades[i].number = counter++;
-    }
-}
-
-void createClubs(card clubs[]){
-    int counter = 2;
-    for (int i = 0 ; i < 13 ; i++){
-        clubs[i].suite = "\u2663";
-        clubs[i].number = counter++;
-    }
-}
-
-void createHearts(card hearts[]){
-    int counter = 2;
-    for (int i = 0 ; i < 13 ; i++){
-        hearts[i].suite = "\u2665";
-        hearts[i].number = counter++;
-    }
-}
-
-void createDiamonds(card diamonds[]){
-    int counter = 2;
-    for (int i = 0 ; i < 13 ; i++){
-        diamonds[i].suite = "\u2666";
-        diamonds[i].number = counter++;
+        if (i >= 0 && i <= 12) deck[i].suite = "\u2660";
+        else if (i >= 13 && i <= 25) deck[i].suite = "\u2663";
+        else if (i >= 26 && i <= 38 ) deck[i].suite = "\u2665";
+        else deck[i].suite = "\u2666";
+        deck[i].number = counter++;
+        if (counter > 14 ) counter = 2;
     }
 }
 
@@ -115,5 +62,20 @@ void swap(card *ptr , card *ptr1){
 }
 
 void output(card array[] , int size){
-    for (int i = 0 ; i < size ; i++) cout << array[i];
+    int counter = 0;
+    for (int i = 1 ; i <= 4 ; i++) {
+        int end = 13;
+        for ( ; counter < end*i; counter++)
+        {
+            cout << array[counter];
+        }
+        cout <<endl;
+        counter = end*i;
+    }
+}
+
+void deal(card p1, card p2 , card p3 , card p4){
+    for (int i = 0 ; i < 52 ; i++){
+        
+    }
 }
