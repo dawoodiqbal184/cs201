@@ -21,10 +21,16 @@ void distribute(card p1[],card p2[] , card p3[] , card p4[]);
 
 
 
-ostream& operator<<(ostream& os , const card x){
-    os << x.suite<<x.number<<" ";
+ostream& operator << (ostream& os , const card x){
+         if(x.number == 11) os << x.suite << "J ";
+    else if(x.number == 12) os << x.suite << "Q ";
+    else if(x.number == 13) os << x.suite << "K ";
+    else if(x.number == 14) os << x.suite << "A ";
+    else os << x.suite << x.number <<" ";
     return os;
 }
+
+
 int main(){
     srand(time(0));
     card deck[52] , p1[13] , p2[13], p3[13] , p4[13];
@@ -77,18 +83,6 @@ void outputDeck(card array[] , int size){
         }
         cout <<endl;
         counter = end*i;
-    }
-}
-
-void deal(card deck[] , card p1 , card p2 , card p3 , card p4){
-    int counter = 2;
-    for (int i = 0 ; i < 52 ; i++){
-        if (i >= 0 && i <= 12) deck[i].suite = "\u2660";
-        else if (i >= 13 && i <= 25) deck[i].suite = "\u2663";
-        else if (i >= 26 && i <= 38 ) deck[i].suite = "\u2665";
-        else deck[i].suite = "\u2666";
-        deck[i].number = counter++;
-        if (counter > 14 ) counter = 2;
     }
 }
 
