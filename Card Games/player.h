@@ -16,7 +16,7 @@ class Player {
     void raiseBet(int amount);
     void receiveCards(Card incomingCard);
     Player(){}
-    Player( std::string name  , int chips){
+    Player( std::string name  , int chips = 500){
         this->name = name;
         this->chips = chips;
         this->nextCard = 0;
