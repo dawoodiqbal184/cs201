@@ -3,11 +3,12 @@
 #include <string>
 
 class Card {
+	friend std::ostream& operator << (std::ostream& os , const Card& x);
 	private :
 		std::string suite;
 		int number;
 	public : 
-		friend std::ostream& operator << (std::ostream& os , const Card& x);
+		
         Card(){
 
         }
