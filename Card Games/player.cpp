@@ -3,10 +3,12 @@
 #include "player.h"
 using namespace std;
 
+
 void Player::receiveCards(Card incomingCard){
     hand[nextCard] = incomingCard;
     nextCard++;
 }
+
 
 void Player::showCards(){
     cout << name<<"'s Hand : ";
