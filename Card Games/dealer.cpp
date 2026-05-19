@@ -5,6 +5,7 @@
 #include "Dealer.h"
 using namespace std;
 
+
 void Dealer::createCards(){
     int counter = 2;
 	string s;
@@ -19,6 +20,7 @@ void Dealer::createCards(){
     }
 }
 
+
 void Dealer::shuffle(){
     srand(time(0));
     int counter = 0;
@@ -28,11 +30,13 @@ void Dealer::shuffle(){
     }
 }
 
+
 void Dealer::swap(Card *ptr , Card *ptr1){
     Card temp = *ptr;
     *ptr = *ptr1;
     *ptr1 = temp;
 }
+
 
 Card Dealer::deal(){
     Card nextCard = deck[topCard];
@@ -40,11 +44,13 @@ Card Dealer::deal(){
     return nextCard;
 }
 
+
 void Dealer::output(int size){
     for (int i = 0 ; i < size ; i++){
         cout <<deck[i];
     }
 }
+
 
 ostream& operator << (ostream& os , const Card& x){
          if(x.number == 11) os << x.suite << "J ";
