@@ -5,6 +5,7 @@
 #include <string>
 
 std::string names[4] = {"John" , "Thomas" , "Nick" , "Abraham"};
+
 class texasTable{
     private:
         int players;
@@ -52,14 +53,13 @@ Player* texasTable::addPlayers(){
             ptr = new Player[4];
             for (int i = 0 ; i < players ; i++){
                 std::string name;
-                std::cin.ignore();
                 std::cout << "Enter the name of player # "<<i<<" : ";
                 getline(std::cin , name);
-                ptr[i] = Player(name);
+                ptr[i] = Player(name );
             }
             for (int i = players ; i < 4 ; i++){
                 std::string name;
-                name = names[rand()% 4 + 1];
+                name = names[rand()% 4];
                 ptr[i] = Player(name);
             }
         }
