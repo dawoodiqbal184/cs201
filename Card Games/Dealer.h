@@ -1,4 +1,7 @@
+#ifndef Dealer_H
+#define Dealer_H
 #pragma once 
+
 #include <iostream>
 #include "Card.h"
 #include "player.h"
@@ -19,3 +22,5 @@ class Dealer{
         }
         ~Dealer(){}
 };
+
+#endif
