@@ -1,7 +1,3 @@
-// spades = \u2660
-// clubs = \u2663
-// hearts = \u2665
-// diamonds = \u2666
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -11,6 +7,7 @@ struct card{
     string suite ;
     int number;
 };
+
 void createCards(card deck[]);
 void shuffle(card deck[]);
 void swap(card *ptr , card *ptr1);
