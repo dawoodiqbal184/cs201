@@ -1,3 +1,6 @@
+#ifndef Player_H
+#define Player_H
+
 #pragma once
 #include "Card.h"
 #include <iostream>
@@ -26,3 +29,5 @@ class Player {
         this->chips = 0;
     }
 };
+
+#endif
