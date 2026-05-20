@@ -5,7 +5,6 @@
 #include "Dealer.h"
 using namespace std;
 
-
 void Dealer::createCards(){
     int counter = 2;
 	string s;
