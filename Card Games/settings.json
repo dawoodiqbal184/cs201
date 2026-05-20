@@ -1,0 +1,7 @@
+{
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && g++ 2Players.cpp player.cpp dealer.cpp -o play_casino && ./play_casino"
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true
+}

@@ -30,6 +30,8 @@ int dice(){
         return num;
     }
 }
+
+
 int position(int colour[][2]){
     int sum = 0;
     for (int i = 0 ; i < 4 ; i++){
@@ -39,6 +41,8 @@ int position(int colour[][2]){
     }
  return sum;
 }
+
+
 void peiceUnlocker(int colour[][2] , string peiceNames[] , bool start[]){
     for (int i = 0 ; i < 4 ; i ++){
         if (start[i] == false){
@@ -49,6 +53,8 @@ void peiceUnlocker(int colour[][2] , string peiceNames[] , bool start[]){
         }
     }
 }
+
+
 int peiceDecider(int colour [][2], bool start[]){
     int indexMove;
     for (int i = 0 ; i < 4 ; i++){
@@ -56,6 +62,8 @@ int peiceDecider(int colour [][2], bool start[]){
     }
     return indexMove;
 }
+
+
 int unlockCheck(bool start[]){
     int indexUnlocked = 0;
     for (int i = 0 ; i < 4 ; i++){
@@ -65,6 +73,8 @@ int unlockCheck(bool start[]){
     }
     return indexUnlocked;
 }
+
+
 void move_6(int colour[][2] , string peiceName[] , bool start[]){
     int indexMove = peiceDecider(colour , start);
     int number = dice();
@@ -72,12 +82,16 @@ void move_6(int colour[][2] , string peiceName[] , bool start[]){
     colour[indexMove][0] = 1;
     cout << peiceName[indexMove][1] <<" is moved to "<<colour[indexMove][1];
 }
+
+
 void move_12(bool start[], int colour[][2] , string peiceNames[]){
     int indexUnlocked = unlockCheck(start);
     int sum = 0;
     if (indexUnlocked < 4) peiceUnlocker(colour , peiceNames , start);
     else if(indexUnlocked == 4) move_6(colour , dice() , peiceNames , start);
 }
+
+
 int move_18(int colour[][2] , string peiceNames[] , bool start[]){
     int index = unlockCheck(start);
     int sum = position(colour);
@@ -97,6 +111,8 @@ int move_18(int colour[][2] , string peiceNames[] , bool start[]){
     }
  return sum;
 }
+
+
 void checker(int colour[][2]){
     int size = 4;
     colour[size][2];
@@ -107,12 +123,16 @@ void checker(int colour[][2]){
         }
     }
 }
+
+
 int play(int number , int colour[][2]){
     int number = dice();
     if (number >= 0 && number < 6){
         move_6(colour , )
     }
 }
+
+
 int pla(int current_position , bool* start , string player , bool* Player , int colour[][2] ,bool start[] , string peiceNames[] ){
     if (current_position < 56){ // already won check
         int num = rand()% 6 + 1;
@@ -161,6 +181,8 @@ int pla(int current_position , bool* start , string player , bool* Player , int 
     else if (*Player) cout << player << " already won!\n";
     return current_position;
 }
+
+
 void winner(string Player ,string Player2 , string Player3 , string Player4 , bool *player1 ,bool *player2 , bool *player3, bool *player4){
     if (*player1 && !*player2 && !*player3 && !*player4){
         for(int i = 0 ; i < 30 ; i++) cout << "*";
@@ -192,6 +214,8 @@ void winner(string Player ,string Player2 , string Player3 , string Player4 , bo
         cout << endl;
     } 
 }
+
+
 void looser(string Player, bool *player1, bool *player2, bool* player3, bool *player4){
     if (*player1 && *player2 , *player3 , !player4){
         for(int i = 0 ; i < 30 ; i++) cout << "*";
@@ -203,6 +227,8 @@ void looser(string Player, bool *player1, bool *player2, bool* player3, bool *pl
         
     }
 }
+
+
 int main(){
     srand(time(0));
     string Red[4] = {"Red 1" , "Red 2" , "Red 3" , "Red 4"};

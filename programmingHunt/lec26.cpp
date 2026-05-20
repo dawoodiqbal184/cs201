@@ -1,12 +1,14 @@
 #include <iostream>
 using namespace std;
 
+
 class Account{
     private:
         int pin;
         double balance;
 
     public:
+
         char accountNo[15];
         void deposit(double amount);
         void withdraw(int pin , double balance);
@@ -21,7 +23,7 @@ class Account{
 
 
 int main(){
-   Account a = Account(1234, 500.0); //creating nwe acc
+   Account a = Account(1234, 500.0); //creating new acc
     a.print(); // printing status
     a.deposit(100); //depositing 100 rupees
     a.print(); // printing status

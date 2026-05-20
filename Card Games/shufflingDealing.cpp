@@ -29,6 +29,12 @@ ostream& operator << (ostream& os , const card x){
 
 
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout << unitbuf;  // ← forces cout to flush immediately every time
+    
+    // rest of your code...
+
     srand(time(0));
     card deck[52] , p1[13] , p2[13], p3[13] , p4[13];
     createCards(deck);

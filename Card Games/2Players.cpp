@@ -3,8 +3,8 @@
 
 int main(){
     Dealer tableDealer;
-    Player dawood("Dawood" , 5000);
-    Player opponent("Opponent" , 5000);
+    Player dawood("Dawood" );
+    Player opponent("Opponent");
     tableDealer.shuffle();
     for (int i = 0 ; i < 4 ; i++){
         dawood.receiveCards(tableDealer.deal());

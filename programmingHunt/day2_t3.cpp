@@ -89,14 +89,15 @@ void remove(students student[] , bool array[] , int size){
     for(; i <size ; i++){
         if (student[i].id == id)break;
     }
-    student[i].name[0] = '\0';
-    student[i].id = 0;
-    student[i].gpa = 0.0;
-    array[i] = true;
     if (i >= size) {
         cout << "Student not found!"; 
         return; 
     }
+    student[i].name[0] = '\0';
+    student[i].id = 0;
+    student[i].gpa = 0.0;
+    array[i] = true;
+    
 }
 
 void display(students student[] , int size , bool array[]){
@@ -126,7 +127,7 @@ void printFile(fstream &myFile){
 
         char array[100];
         myFile.getline(array , 100);
-        cout << array;
+        cout << array<<endl;
     }
     myFile.close();
 }

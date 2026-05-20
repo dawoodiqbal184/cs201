@@ -53,10 +53,10 @@ void Dealer::output(int size){
 
 
 ostream& operator << (ostream& os , const Card& x){
-         if(x.number == 11) os << x.suite << "J ";
-    else if(x.number == 12) os << x.suite << "Q ";
-    else if(x.number == 13) os << x.suite << "K ";
-    else if(x.number == 14) os << x.suite << "A ";
+         if(x.number == 11) os << x.suite << "J ,";
+    else if(x.number == 12) os << x.suite << "Q ,";
+    else if(x.number == 13) os << x.suite << "K ,";
+    else if(x.number == 14) os << x.suite << "A ,";
     else os << x.suite <<" "<< x.number <<" ,";
     return os;
 }

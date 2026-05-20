@@ -1,36 +1,25 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "C/C++: g++-15 build and debug active file",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Disable GDB terminal warning",
-                    "text": "set complaints 0",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set displaced stepping on",
-                    "text": "set displaced-stepping on",
-                    "ignoreFailures": true
-                },
-            ],
-            "preLaunchTask": "C/C++: g++-15 build active file",
-            "miDebuggerPath": "/usr/bin/gdb"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug C++",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "launchCompleteCommand": "exec-run",
+      "preLaunchTask": "Build C++",
+      "logging": {
+        "engineLogging": false,
+        "trace": false,
+        "traceResponse": false
+      }
+    }
+  ]
 }

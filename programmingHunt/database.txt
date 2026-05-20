@@ -1,0 +1,2 @@
+Student added successfully!
+Name :    dawood | ID no. :  1 | GPA :     4
