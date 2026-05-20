@@ -10,7 +10,6 @@ int main(){
         dawood.receiveCards(tableDealer.deal());
         opponent.receiveCards(tableDealer.deal());
     }
-
     dawood.showCards();
     opponent.showCards();
     return 0;
