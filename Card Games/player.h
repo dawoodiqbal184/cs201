@@ -9,6 +9,7 @@
 class Player {
     private :
     Card hand[13];
+    bool hasFolded;
     int chips;
     std::string name;
     int nextCard;
@@ -18,11 +19,16 @@ class Player {
     void meetBet(int amount);
     void raiseBet(int amount);
     void receiveCards(Card incomingCard);
+    Player operator - (int bet){
+        this->chips -= bet;
+        return *this;
+    }
     Player(){}
     Player( std::string name  , int chips = 500){
         this->name = name;
         this->chips = chips;
         this->nextCard = 0;
+        this->hasFolded = false;
     }
     ~Player(){
         this->name = "";

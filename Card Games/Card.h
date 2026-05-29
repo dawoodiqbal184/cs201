@@ -4,6 +4,7 @@
 
 class Card {
 	friend std::ostream& operator << (std::ostream& os , const Card& x);
+	friend bool operator == (const Card &b);
 	private :
 		std::string suite;
 		int number;
