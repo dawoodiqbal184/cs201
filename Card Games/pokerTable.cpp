@@ -1,36 +1,13 @@
 #include "Dealer.h"
 #include "Card.h"
 #include "player.h"
+#include "Table.h"
 #include <iostream>
 #include <string>
 using namespace std;
 
 std::string names[4] = {"John" , "Thomas" , "Nick" , "Abraham"};
-
-class texasTable{
-    private:
-        int players;
-        int cards = 2;
-        Player array[4];
-        Dealer dealer;
-        Card community[5];
-    public:
-        void addPlayers();
-        void startGame();
-        void dealCards();
-        void dealFlop();
-        void dealTurn();
-        void dealRiver();
-        void showdown();
-        
-
-        texasTable(){
-            std::cout << "How many real players are there : ";
-            std::cin >> players;
-            std::cin.ignore();
-            addPlayers();
-        }
-};
+int texasTable::communityCards = 0;
 
 int main(){
     texasTable table;
@@ -83,6 +60,7 @@ void texasTable::addPlayers(){
    
 }
 
+
 void texasTable::startGame(){
     cout << "Dealer is shuffling the cards\n";
     dealer.shuffle();
@@ -104,22 +82,31 @@ void texasTable::dealFlop(){
         community[i] = dealer.deal();
         cout << community[i]<< " ";
     }
+    texasTable::communityCards = 3;
 }
         
 
 void texasTable::dealTurn(){
     community[3] = dealer.deal();
     cout << community[3]<<" ";
+    texasTable::communityCards = 4;
 }
         
 
 void texasTable::dealRiver(){
     community[4] = dealer.deal();
     cout << community[4]<<" \n";
+    texasTable::communityCards = 5;
 }
+
 
 void texasTable::showdown(){
     for (int i = 0 ; i < 4 ; i++){
         array[i].showCards();
     }
+}
+
+
+int texasTable::get_communityStatus(){
+    return communityCards;
 }

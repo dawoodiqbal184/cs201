@@ -4,12 +4,20 @@
 
 class Card {
 	friend std::ostream& operator << (std::ostream& os , const Card& x);
-	friend bool operator == (const Card &b);
+	
 	private :
 		std::string suite;
 		int number;
 	public : 
-		
+		bool operator == (const int &b);
+		bool operator > (const int &x);
+		bool operator == (const std::string &b);
+		int getNumber(){
+			return this-> number;
+		}
+		std::string getSuite(){
+			return this-> suite;
+		}
         Card(){
 
         }

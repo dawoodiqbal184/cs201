@@ -15,6 +15,7 @@ class texasTable{
         Player array[4];
         Dealer dealer;
         Card community[5];
+        static int communityCards;
     public:
         void addPlayers();
         void startGame();
@@ -23,6 +24,7 @@ class texasTable{
         void dealTurn();
         void dealRiver();
         void showdown();
+        static int get_communityStatus();
         
 
         texasTable(){
